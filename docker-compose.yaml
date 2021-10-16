@@ -1,6 +1,7 @@
 version: "3.7"
 
 services:
+  # Webserver
   webserver:
     build:
       context: ./bin/webserver
@@ -19,6 +20,18 @@ services:
       - ${OPENLITESPEED_VHOST-./config/openlitespeed-vhosts/vhconf.conf}:/usr/local/lsws/conf/vhosts/Example/vhconf.conf
       - ${DOCKER_CONFIG-./config/openlitespeed-docker/docker.conf}:/usr/local/lsws/conf/templates/docker.conf
       - ${LOG_DIR-./logs/openlitespeed}:/usr/local/lsws/logs/
+  # API Server
+  apiserver:
+    build:
+      context: ./bin/apiserver
+    container_name: "apiserver"
+    restart: "always"
+    ports:
+      - "${APISERVER_PORT}:5000"
+    links:
+      - webserver
+      - mariadb
+  # MySQL Server
   mariadb:
     build:
       context: ./bin/mariadb
@@ -36,6 +49,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  # PHPMyAdmin server
   phpmyadmin:
     build:
       context: ./bin/phpmyadmin
