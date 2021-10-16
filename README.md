@@ -38,6 +38,49 @@ This repository can be used to host LOMP (Linux, OpenLiteSpeed, Mariadb, PHP) se
 
 ## Architecture
 
+![lamp-architecture](docs/architecture.png)
+
+## Folder Structure
+
+```
+lomp-docker-compose
+ ┣ bin
+ ┃ ┣ apiserver
+ ┃ ┃ ┣ code
+ ┃ ┃ ┃ ┣ app.py
+ ┃ ┃ ┃ ┗ requirements.txt
+ ┃ ┃ ┗ Dockerfile
+ ┃ ┣ mariadb
+ ┃ ┃ ┗ Dockerfile
+ ┃ ┣ phpmyadmin
+ ┃ ┃ ┗ Dockerfile
+ ┃ ┗ webserver
+ ┃ ┃ ┣ Dockerfile
+ ┃ ┃ ┗ index.php
+ ┣ config
+ ┃ ┣ openlitespeed-config
+ ┃ ┃ ┗ httpd_config.conf
+ ┃ ┣ openlitespeed-docker
+ ┃ ┃ ┗ docker.conf
+ ┃ ┣ openlitespeed-vhosts
+ ┃ ┃ ┗ vhconf.conf
+ ┃ ┗ php
+ ┃ ┃ ┗ php.ini
+ ┣ data
+ ┃ ┗ .gitkeep
+ ┣ docs
+ ┃ ┣ architecture.drawio
+ ┃ ┗ architecture.png
+ ┣ logs
+ ┃ ┗ openlitespeed
+ ┃ ┃ ┗ .gitkeep
+ ┣ .gitignore
+ ┣ LICENSE
+ ┣ README.md
+ ┣ docker-compose.yaml
+ ┗ sample_env
+```
+
 ## Contributors
 
 1. Sashwat K <sashwat0001@gmail.com>
